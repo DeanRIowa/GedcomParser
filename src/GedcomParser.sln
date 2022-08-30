@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GedcomParser", "GedcomParse
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GedcomParser.Test", "GedcomParser.Test\GedcomParser.Test.csproj", "{22D66E2E-E5F2-4F65-8399-6671279E3324}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GedcomSampleApp", "GedcomSampleApp\GedcomSampleApp.csproj", "{1F0C08B1-D354-4A46-94EC-8C56C45025D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{22D66E2E-E5F2-4F65-8399-6671279E3324}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22D66E2E-E5F2-4F65-8399-6671279E3324}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22D66E2E-E5F2-4F65-8399-6671279E3324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F0C08B1-D354-4A46-94EC-8C56C45025D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F0C08B1-D354-4A46-94EC-8C56C45025D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F0C08B1-D354-4A46-94EC-8C56C45025D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F0C08B1-D354-4A46-94EC-8C56C45025D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
