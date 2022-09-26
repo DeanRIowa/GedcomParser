@@ -27,11 +27,12 @@ namespace GedcomSampleApp
             {
                 // debug.(item.LastName);
                 Debug.WriteLine(item.LastName);
-                foreach (DatePlace resPlace in item.Residence)
+                Debug.WriteLine(item.FirstName);
+                foreach (Name personName in item.Names)
                 {
-                    Debug.WriteLine(resPlace.Date);
-                    Debug.WriteLine(resPlace.Description);
-                    Debug.WriteLine(resPlace.Place);
+                    Debug.WriteLine(personName.LastName);
+                    Debug.WriteLine(personName.FirstName);
+                    Debug.WriteLine(personName.Preferred.ToString());
                 }
             }
             string stopPoint;

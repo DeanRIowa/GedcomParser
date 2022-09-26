@@ -11,6 +11,9 @@ namespace GedcomParser.Parsers
         internal static void ParsePerson(this ResultContainer resultContainer, GedcomChunk indiChunk)
         {
             var person = new Person {Id = indiChunk.Id};
+            string firstName = "";
+            string lastName = "";
+            bool preferred = true;
 
             foreach (var chunk in indiChunk.SubChunks)
             {
@@ -91,18 +94,18 @@ namespace GedcomParser.Parsers
                         break;
 
                     case "NAME":
-                        var nameSections = chunk.Data.Split("/".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                        if (nameSections.Length > 0)
-                        {
-                            person.FirstName = nameSections[0];
-                        }
+                        // Add all names to list, first name encountered is considered preferred name
+                        string[] nameSections = chunk.Data.Split("/".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                        person.Names.Add(NameParser.ParseName(nameSections, preferred, ref firstName, ref lastName));
 
-                        if (nameSections.Length > 1)
+                        if (preferred == true)
                         {
-                            person.LastName = nameSections[1];
+                            person.FirstName = firstName;
+                            person.LastName = lastName;
+                            preferred = false;
                         }
-
                         break;
+
 
                     case "NATU":
                         person.BecomingCitizen.Add(resultContainer.ParseDatePlace(chunk));
@@ -169,5 +172,8 @@ namespace GedcomParser.Parsers
         {
             return chunk.SubChunks.SingleOrDefault(c => c.Type == "TYPE")?.Data.ToLower();
         }
+
+
+
     }
 }

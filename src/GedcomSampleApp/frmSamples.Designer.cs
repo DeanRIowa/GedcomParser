@@ -29,25 +29,25 @@ namespace GedcomSampleApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnPersonLooping = new System.Windows.Forms.Button();
+            this.btnPersonLoopingAllNames = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnPersonLooping
+            // btnPersonLoopingAllNames
             // 
-            this.btnPersonLooping.Location = new System.Drawing.Point(31, 27);
-            this.btnPersonLooping.Name = "btnPersonLooping";
-            this.btnPersonLooping.Size = new System.Drawing.Size(115, 23);
-            this.btnPersonLooping.TabIndex = 0;
-            this.btnPersonLooping.Text = "Loop People";
-            this.btnPersonLooping.UseVisualStyleBackColor = true;
-            this.btnPersonLooping.Click += new System.EventHandler(this.btnPersonLooping_Click);
+            this.btnPersonLoopingAllNames.Location = new System.Drawing.Point(31, 27);
+            this.btnPersonLoopingAllNames.Name = "btnPersonLoopingAllNames";
+            this.btnPersonLoopingAllNames.Size = new System.Drawing.Size(217, 23);
+            this.btnPersonLoopingAllNames.TabIndex = 0;
+            this.btnPersonLoopingAllNames.Text = "Loop People (All Names)";
+            this.btnPersonLoopingAllNames.UseVisualStyleBackColor = true;
+            this.btnPersonLoopingAllNames.Click += new System.EventHandler(this.btnPersonLooping_Click);
             // 
             // frmSample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnPersonLooping);
+            this.Controls.Add(this.btnPersonLoopingAllNames);
             this.Name = "frmSample";
             this.Text = "Gedcomm Sample Application";
             this.ResumeLayout(false);
@@ -56,7 +56,7 @@ namespace GedcomSampleApp
 
         #endregion
 
-        private System.Windows.Forms.Button btnPersonLooping;
+        private System.Windows.Forms.Button btnPersonLoopingAllNames;
     }
 }
 

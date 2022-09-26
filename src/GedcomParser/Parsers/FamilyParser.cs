@@ -144,20 +144,18 @@ namespace GedcomParser.Parsers
                     From = parents[1],
                     To = parents[0],
 
-                    Engagement = spousalRelation.Engagement,
-                    Marriage = spousalRelation.Marriage,
-                    MarriageContract = spousalRelation.MarriageContract,
-                    MarriageSettlement = spousalRelation.MarriageSettlement,
-                    DivorceFiled = spousalRelation.DivorceFiled,
-                    Divorce = spousalRelation.Divorce,
-                    Annulment = spousalRelation.Annulment,
-                    MarriageBann = spousalRelation.MarriageBann,
-                    MarriageLicense = spousalRelation.MarriageLicense,
-                    Separation = spousalRelation.Separation,
-                    Marriage = marriage,
-                    Divorce = divorce,
-                    Relation = relation,
-                    Note = note
+                   Engagement          = spousalRelation.Engagement,
+                    Marriage            = spousalRelation.Marriage,
+                    MarriageContract    = spousalRelation.MarriageContract,
+                    MarriageSettlement  = spousalRelation.MarriageSettlement,
+                    DivorceFiled        = spousalRelation.DivorceFiled,
+                    Divorce             = spousalRelation.Divorce,
+                    Annulment           = spousalRelation.Annulment,
+                    MarriageBann        = spousalRelation.MarriageBann,
+                    MarriageLicense     = spousalRelation.MarriageLicense,
+                    Separation          = spousalRelation.Separation,
+                    Relation            = relation,
+                    Note                = note
                 });
             }
 
