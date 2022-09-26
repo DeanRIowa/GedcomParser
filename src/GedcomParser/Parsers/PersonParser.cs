@@ -11,9 +11,7 @@ namespace GedcomParser.Parsers
         internal static void ParsePerson(this ResultContainer resultContainer, GedcomChunk indiChunk)
         {
             var person = new Person {Id = indiChunk.Id};
-            string firstName = "";
-            string lastName = "";
-            bool preferred = true;
+  
 
             foreach (var chunk in indiChunk.SubChunks)
             {
@@ -96,14 +94,18 @@ namespace GedcomParser.Parsers
                     case "NAME":
                         // Add all names to list, first name encountered is considered preferred name
                         string[] nameSections = chunk.Data.Split("/".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                        person.Names.Add(NameParser.ParseName(nameSections, preferred, ref firstName, ref lastName));
 
-                        if (preferred == true)
+                        Name tmpName = NameParser.ParseName(nameSections);
+                        
+                        if (person.Names.Count==0)
                         {
-                            person.FirstName = firstName;
-                            person.LastName = lastName;
-                            preferred = false;
+                            tmpName.Preferred = true;
                         }
+                        else
+                        {
+                            tmpName.Preferred = false;
+                        }
+                        person.Names.Add(tmpName);
                         break;
 
 

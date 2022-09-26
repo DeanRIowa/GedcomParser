@@ -21,18 +21,26 @@ namespace GedcomSampleApp
 
         private void btnPersonLooping_Click(object sender, EventArgs e)
         {
-            var myLines = GedcomParser.Services.FileParser.ParseFromFile(@"C:\Users\deanr\source\repos\GedcomParser-master\src\GedcomParser.Test\Resources\GedcomStandard\555SAMPLE.GED");
+           string gedFile = @"C:\Users\deanr\source\repos\GedcomParser-master\src\GedcomParser.Test\Resources\GedcomStandard\555SAMPLE.GED";
+           // string gedFile = @"C:\Family Research\DNA\TestTree.ged";
+
+
+            var myLines = GedcomParser.Services.FileParser.ParseFromFile(gedFile);
+
+            // Reset Listbox
+            lstResults.Items.Clear();
 
             foreach (GedcomParser.Entities.Person item in myLines.Persons)
             {
-                // debug.(item.LastName);
-                Debug.WriteLine(item.LastName);
-                Debug.WriteLine(item.FirstName);
+       
+                lstResults.Items.Add("Person Last Name: " + item.LastName);
+                lstResults.Items.Add("Person First Name: " + item.FirstName);
+                lstResults.Items.Add("Names Collection");
                 foreach (Name personName in item.Names)
                 {
-                    Debug.WriteLine(personName.LastName);
-                    Debug.WriteLine(personName.FirstName);
-                    Debug.WriteLine(personName.Preferred.ToString());
+                    lstResults.Items.Add("--- Preferred: " + personName.Preferred.ToString());
+                    lstResults.Items.Add("------ Last Name: " + personName.LastName);
+                    lstResults.Items.Add("------ First Name: " + personName.FirstName);
                 }
             }
             string stopPoint;
