@@ -9,6 +9,7 @@ namespace GedcomParser.Entities
         public string IdNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public List<Name> Names { get; set; } = new List<Name>();
         public string Gender { get; set; }
         public DatePlace Birth { get; set; }
         public DatePlace Death { get; set; }
