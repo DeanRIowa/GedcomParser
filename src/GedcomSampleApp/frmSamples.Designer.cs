@@ -34,11 +34,12 @@ namespace GedcomSampleApp
             this.lblResults = new System.Windows.Forms.Label();
             this.btnPersonLoopingSpouses = new System.Windows.Forms.Button();
             this.btnPersonMarriage = new System.Windows.Forms.Button();
+            this.btnLoadGedcomFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPersonLoopingAllNames
             // 
-            this.btnPersonLoopingAllNames.Location = new System.Drawing.Point(30, 15);
+            this.btnPersonLoopingAllNames.Location = new System.Drawing.Point(27, 57);
             this.btnPersonLoopingAllNames.Name = "btnPersonLoopingAllNames";
             this.btnPersonLoopingAllNames.Size = new System.Drawing.Size(217, 23);
             this.btnPersonLoopingAllNames.TabIndex = 0;
@@ -66,7 +67,7 @@ namespace GedcomSampleApp
             // 
             // btnPersonLoopingSpouses
             // 
-            this.btnPersonLoopingSpouses.Location = new System.Drawing.Point(30, 57);
+            this.btnPersonLoopingSpouses.Location = new System.Drawing.Point(27, 95);
             this.btnPersonLoopingSpouses.Name = "btnPersonLoopingSpouses";
             this.btnPersonLoopingSpouses.Size = new System.Drawing.Size(217, 23);
             this.btnPersonLoopingSpouses.TabIndex = 3;
@@ -76,7 +77,7 @@ namespace GedcomSampleApp
             // 
             // btnPersonMarriage
             // 
-            this.btnPersonMarriage.Location = new System.Drawing.Point(30, 96);
+            this.btnPersonMarriage.Location = new System.Drawing.Point(27, 133);
             this.btnPersonMarriage.Name = "btnPersonMarriage";
             this.btnPersonMarriage.Size = new System.Drawing.Size(217, 23);
             this.btnPersonMarriage.TabIndex = 4;
@@ -84,11 +85,22 @@ namespace GedcomSampleApp
             this.btnPersonMarriage.UseVisualStyleBackColor = true;
             this.btnPersonMarriage.Click += new System.EventHandler(this.btnPersonMarriage_Click);
             // 
+            // btnLoadGedcomFile
+            // 
+            this.btnLoadGedcomFile.Location = new System.Drawing.Point(27, 19);
+            this.btnLoadGedcomFile.Name = "btnLoadGedcomFile";
+            this.btnLoadGedcomFile.Size = new System.Drawing.Size(217, 23);
+            this.btnLoadGedcomFile.TabIndex = 5;
+            this.btnLoadGedcomFile.Text = "Load Gedcom File";
+            this.btnLoadGedcomFile.UseVisualStyleBackColor = true;
+            this.btnLoadGedcomFile.Click += new System.EventHandler(this.btnLoadGedcomFile_Click);
+            // 
             // frmSample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1392, 614);
+            this.Controls.Add(this.btnLoadGedcomFile);
             this.Controls.Add(this.btnPersonMarriage);
             this.Controls.Add(this.btnPersonLoopingSpouses);
             this.Controls.Add(this.lblResults);
@@ -108,6 +120,7 @@ namespace GedcomSampleApp
         private System.Windows.Forms.Label lblResults;
         private System.Windows.Forms.Button btnPersonLoopingSpouses;
         private System.Windows.Forms.Button btnPersonMarriage;
+        private System.Windows.Forms.Button btnLoadGedcomFile;
     }
 }
 
