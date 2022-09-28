@@ -39,6 +39,7 @@ namespace GedcomSampleApp
             this.btunPersonParents = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnPersonsParentsExtender = new System.Windows.Forms.Button();
             this.bthPersonChildrenExtender = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFileName = new System.Windows.Forms.TextBox();
@@ -48,6 +49,7 @@ namespace GedcomSampleApp
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtRawData = new System.Windows.Forms.TextBox();
             this.lblProcessing = new System.Windows.Forms.Label();
+            this.btunPersonSiblings = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -138,6 +140,7 @@ namespace GedcomSampleApp
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btunPersonSiblings);
             this.groupBox1.Controls.Add(this.btnPersonLoopingAllNames);
             this.groupBox1.Controls.Add(this.btnPersonLoopingSpouses);
             this.groupBox1.Controls.Add(this.btnPersonMarriage);
@@ -145,20 +148,31 @@ namespace GedcomSampleApp
             this.groupBox1.Controls.Add(this.btnPersonChildren);
             this.groupBox1.Location = new System.Drawing.Point(10, 74);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(244, 206);
+            this.groupBox1.Size = new System.Drawing.Size(244, 235);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Standard";
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnPersonsParentsExtender);
             this.groupBox2.Controls.Add(this.bthPersonChildrenExtender);
-            this.groupBox2.Location = new System.Drawing.Point(10, 286);
+            this.groupBox2.Location = new System.Drawing.Point(10, 326);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(244, 232);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Using Extenders";
+            // 
+            // btnPersonsParentsExtender
+            // 
+            this.btnPersonsParentsExtender.Location = new System.Drawing.Point(15, 66);
+            this.btnPersonsParentsExtender.Name = "btnPersonsParentsExtender";
+            this.btnPersonsParentsExtender.Size = new System.Drawing.Size(210, 23);
+            this.btnPersonsParentsExtender.TabIndex = 1;
+            this.btnPersonsParentsExtender.Text = "All People Parents";
+            this.btnPersonsParentsExtender.UseVisualStyleBackColor = true;
+            this.btnPersonsParentsExtender.Click += new System.EventHandler(this.btnPersonsParentsExtender_Click);
             // 
             // bthPersonChildrenExtender
             // 
@@ -252,6 +266,16 @@ namespace GedcomSampleApp
             this.lblProcessing.Text = "Processing";
             this.lblProcessing.Visible = false;
             // 
+            // btunPersonSiblings
+            // 
+            this.btunPersonSiblings.Location = new System.Drawing.Point(15, 201);
+            this.btunPersonSiblings.Name = "btunPersonSiblings";
+            this.btunPersonSiblings.Size = new System.Drawing.Size(210, 23);
+            this.btunPersonSiblings.TabIndex = 9;
+            this.btunPersonSiblings.Text = "All People Siblings";
+            this.btunPersonSiblings.UseVisualStyleBackColor = true;
+            this.btunPersonSiblings.Click += new System.EventHandler(this.btunPersonSiblings_Click);
+            // 
             // frmSample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -301,6 +325,8 @@ namespace GedcomSampleApp
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox txtRawData;
         private System.Windows.Forms.Label lblProcessing;
+        private System.Windows.Forms.Button btnPersonsParentsExtender;
+        private System.Windows.Forms.Button btunPersonSiblings;
     }
 }
 
