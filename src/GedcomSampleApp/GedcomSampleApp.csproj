@@ -11,4 +11,19 @@
     <ProjectReference Include="..\GedcomParser\GedcomParser.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Samples.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Samples.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Samples.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Samples.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
 </Project>

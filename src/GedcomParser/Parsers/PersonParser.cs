@@ -92,15 +92,19 @@ namespace GedcomParser.Parsers
                         break;
 
                     case "NAME":
-                        // Add all names to list, first name encountered is considered preferred name
-                        string[] nameSections = chunk.Data.Split("/".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                        Name tmpName = NameParser.ParseName(nameSections, person.Names.Count);
-                        if (person.Names.Count == 0)
+                        if (!String.IsNullOrEmpty(chunk.Data))
                         {
-                            person.LastName = tmpName.LastName;
-                            person.FirstName = tmpName.FirstName;
+                            // Add all names to list, first name encountered is considered preferred name
+                            string[] nameSections = chunk.Data.Split("/".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                            Name tmpName = NameParser.ParseName(nameSections, person.Names.Count);
+                            if (person.Names.Count == 0)
+                            {
+                                person.LastName = tmpName.LastName;
+                                person.FirstName = tmpName.FirstName;
+                            }
+                            person.Names.Add(tmpName);
                         }
-                        person.Names.Add(tmpName);
+
                         break;
 
 
