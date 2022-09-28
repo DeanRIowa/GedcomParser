@@ -42,14 +42,14 @@ namespace GedcomSampleApp
                 // Cycle through Person collection
                 foreach (GedcomParser.Entities.Person item in myLines.Persons)
                 {
-                    lstReultsAddPersonRec("Person", item);
-                    lstResults.Items.Add("--- Names Collection");
+                    lstReultsAddPersonRec("Person",0, item);
+                    lstReultsAddLine("Names Collection", 2);
                     // Cycle throuh Names Collection
                     foreach (Name personName in item.Names)
                     {
-                        lstResults.Items.Add("--- Preferred: " + personName.Preferred.ToString());
-                        lstResults.Items.Add("------ Last Name: " + personName.LastName);
-                        lstResults.Items.Add("------ First Name: " + personName.FirstName);
+                        lstReultsAddLine("Preferred: " + personName.Preferred.ToString(), 3);
+                        lstReultsAddLine("Last Name: " + personName.LastName, 3);
+                        lstReultsAddLine("First Name: " + personName.FirstName, 3);
                     }
                 }
                 ShowProcessingEnd();
@@ -78,23 +78,23 @@ namespace GedcomSampleApp
                         // Cycle through Marriage
                         foreach (DatePlace perMarriage in item.Marriage)
                         {
-                            lstResults.Items.Add("**Marriage**");
-                            lstResults.Items.Add("--- Date: " + perMarriage.Date.ToString());
-                            lstResults.Items.Add("--- Place: " + perMarriage.Place?.ToString());
+                            lstReultsAddLine("Marriage", 2);
+                            lstReultsAddLine("Date: " + perMarriage.Date.ToString(), 2);
+                            lstReultsAddLine("Place: " + perMarriage.Place.ToString(), 2);
                         }
                         // Spouse 1
                         var fromPerson = myLines.Persons.FirstOrDefault(e => e.Id == item.From.Id);
                         if (fromPerson != null)
                         {
-                            lstReultsAddPersonRec("Spouse1", fromPerson);
+                            lstReultsAddPersonRec("Spouse1",2, fromPerson);
                         }
 
                         // Retrieve Spouse 2
-                        lstResults.Items.Add("----- to: ");
+                        lstReultsAddLine("to:", 2);
                         var toPerson = myLines.Persons.FirstOrDefault(e => e.Id == item.To.Id);
                         if (toPerson != null)
                         {
-                            lstReultsAddPersonRec("Spouse2", toPerson);
+                            lstReultsAddPersonRec("Spouse2",2, toPerson);
                         }
                     }
 
@@ -121,7 +121,7 @@ namespace GedcomSampleApp
                 // Cycle through Persons
                 foreach (GedcomParser.Entities.Person item in myLines.Persons)
                 {
-                    lstReultsAddPersonRec("Person", item);
+                    lstReultsAddPersonRec("Person",0, item);
 
                     // Get SpouseRelation list by person id
                     List<SpouseRelation> perRelations = myLines.SpouseRelations.FindAll(e => e.From.Id == item.Id);
@@ -134,15 +134,16 @@ namespace GedcomSampleApp
                             // Cycle through Marriage
                             foreach (DatePlace marrItem in relItem.Marriage)
                             {
-                                lstResults.Items.Add("**Marriage**");
-                                lstResults.Items.Add("--- Date: " + marrItem.Date.ToString());
-                                lstResults.Items.Add("--- Place: " + marrItem.Place.ToString());
+                                lstReultsAddLine("Marriage", 2);
+                                lstReultsAddLine("Date: " + marrItem.Date.ToString(), 2);
+                                lstReultsAddLine("Place: " + marrItem.Place.ToString(), 2);
+
                             }
                             // Get  Spouse
                             var toPerson = myLines.Persons.FirstOrDefault(e => e.Id == relItem.To.Id);
                             if (toPerson != null)
                             {
-                                lstReultsAddPersonRec("to", toPerson);
+                                lstReultsAddPersonRec("to", 2,toPerson);
                             }
                         }
                     }
@@ -210,7 +211,7 @@ namespace GedcomSampleApp
                 // Cycle through Persons
                 foreach (GedcomParser.Entities.Person item in myLines.Persons)
                 {
-                    lstReultsAddPersonRec("Person", item);
+                    lstReultsAddPersonRec("Person", 0,item);
 
                     // Get ChildRelation list by person id
                     List<ChildRelation> perRelations2 = myLines.ChildRelations.FindAll(e => e.To.Id == item.Id);
@@ -227,7 +228,7 @@ namespace GedcomSampleApp
                             var fromPerson = myLines.Persons.FirstOrDefault(e => e.Id == relItem.From.Id);
                             if (fromPerson != null)
                             {
-                                lstReultsAddPersonRec("Child", fromPerson);
+                                lstReultsAddPersonRec("Child",2, fromPerson);
                             }
                         }
                     }
@@ -254,7 +255,7 @@ namespace GedcomSampleApp
                 // Cycle through Persons
                 foreach (GedcomParser.Entities.Person item in myLines.Persons)
                 {
-                    lstReultsAddPersonRec("Person", item);
+                    lstReultsAddPersonRec("Person",0, item);
 
                     // Get Parent list by person id
                     List<ChildRelation> perRelations2 = myLines.ChildRelations.FindAll(e => e.From.Id == item.Id);
@@ -270,7 +271,7 @@ namespace GedcomSampleApp
                             var fromPerson = myLines.Persons.FirstOrDefault(e => e.Id == relItem.To.Id);
                             if (fromPerson != null)
                             {
-                                lstReultsAddPersonRec("Parent", fromPerson);
+                                lstReultsAddPersonRec("Parent",2, fromPerson);
                             }
                         }
                     }
@@ -311,7 +312,7 @@ namespace GedcomSampleApp
                 // Cycle through Persons
                 foreach (GedcomParser.Entities.Person item in myLines.Persons)
                 {
-                    lstReultsAddPersonRec("Person", item);
+                    lstReultsAddPersonRec("Person",0, item);
                     // Get Children for on indidivual person
                     List<Person> childList  = ChildRelationsExtender.getChildPersonsByID(myLines, item.Id);
                     if (childList != null)
@@ -319,7 +320,7 @@ namespace GedcomSampleApp
                         // Cycle through children Persons
                         foreach (Person indChild in childList)
                         {
-                            lstReultsAddPersonRec("Child", indChild);
+                            lstReultsAddPersonRec("Child",2, indChild);
                         }
 
                     }
@@ -328,12 +329,21 @@ namespace GedcomSampleApp
             }
         }
 
-        private void lstReultsAddPersonRec(string perType, Person perItem)
+        private void lstReultsAddLine(string line, int tabsCount)
         {
-            lstResults.Items.Add("**"+ perType +"**");
-            lstResults.Items.Add("----- LastName: " + perItem.LastName);
-            lstResults.Items.Add("----- FirstName: " + perItem.FirstName);
-            lstResults.Items.Add("----- Gender: " + perItem.Gender);
+            string tabs = new string('\t', tabsCount);
+            lstResults.Items.Add(tabs + line);
+
+            lstResults.Refresh();
+        }
+        private void lstReultsAddPersonRec(string perType, int tabsCount,Person perItem)
+        {
+            string tabs = new string('\t', tabsCount);
+            string tabs2 = new string('\t', tabsCount+1);
+            lstResults.Items.Add(tabs + perType);
+            lstResults.Items.Add(tabs2 + "LastName: " + perItem.LastName);
+            lstResults.Items.Add(tabs2 + "FirstName: " + perItem.FirstName);
+            lstResults.Items.Add(tabs2 + "Gender: " + perItem.Gender);
             lstResults.Refresh();
         }
 
@@ -346,6 +356,11 @@ namespace GedcomSampleApp
                 txtFileName.Text = openFileDialog.FileName;
                 Samples.Default.GedFileName = openFileDialog.FileName;
                 Samples.Default.Save();
+                // Gedcom File Loaded
+                lblGedComLoaded.BackColor = Color.Red;
+                lblGedComLoaded.ForeColor = Color.White;
+                lblGedComLoaded.Text = "GEDCom File not Loaded";
+                gedcomLoaded = false;
                 ;
             }
         }
@@ -353,6 +368,87 @@ namespace GedcomSampleApp
         private void frmSample_Load(object sender, EventArgs e)
         {
             txtFileName.Text = Samples.Default.GedFileName;
+        }
+
+        private void btnPersonsParentsExtender_Click(object sender, EventArgs e)
+        {
+            if (gedcomLoaded == false)
+            {
+                MessageBox.Show("Gedcom File Not loaded!");
+            }
+            else
+            {
+                ShowProcessingStart();
+
+                // Reset Listbox
+                lstResults.Items.Clear();
+                lstResults.Items.Add("People Count: " + myLines.Persons.Count.ToString());
+                lstResults.Items.Add("--- Parents Collection");
+
+                // Cycle through Persons
+                foreach (GedcomParser.Entities.Person item in myLines.Persons)
+                {
+                    lstReultsAddPersonRec("Person",0, item);
+
+                    // Get Parents for on indidivual person
+                    List<Person> parentList = ParentExtender.getParentsPersonsByID(myLines, item.Id);
+                    if (parentList != null)
+                    {
+                        // Cycle through children Persons
+                        foreach (Person indChild in parentList)
+                        {
+                            lstReultsAddPersonRec("Parent", 2,indChild);
+                        }
+
+                    }
+                }
+                ShowProcessingEnd();
+            }
+        }
+
+        private void btunPersonSiblings_Click(object sender, EventArgs e)
+        {
+            if (gedcomLoaded == false)
+            {
+                MessageBox.Show("Gedcom File Not loaded!");
+            }
+            else
+            {
+                ShowProcessingStart();
+
+                // Reset Listbox
+                lstResults.Items.Clear();
+                lstResults.Items.Add("People Count: " + myLines.Persons.Count.ToString());
+                lstResults.Items.Add("--- Sibling Collection");
+
+                // Cycle through Persons
+                foreach (GedcomParser.Entities.Person item in myLines.Persons)
+                {
+                    lstReultsAddPersonRec("Person",0, item);
+
+
+                    // Get SiblingRelation list by person id
+                    List<SiblingRelation> perRelations2 = myLines.SiblingRelations.FindAll(e => e.To.Id == item.Id);
+                    // Remove duplicates caused by adoption records
+                    List<SiblingRelation> perRelations = perRelations2.GroupBy(x => x.From.Id).Select(x => x.First()).ToList();
+
+                    if (perRelations.Count > 0)
+                    {
+                        // Cycle through SiblingRelations
+                        foreach (SiblingRelation relItem in perRelations)
+                        {
+
+                            // Get Sibling
+                            var fromPerson = myLines.Persons.FirstOrDefault(e => e.Id == relItem.From.Id);
+                            if (fromPerson != null)
+                            {
+                                lstReultsAddPersonRec("Sibling", 2,fromPerson);
+                            }
+                        }
+                    }
+                }
+                ShowProcessingEnd();
+            }
         }
 
 
