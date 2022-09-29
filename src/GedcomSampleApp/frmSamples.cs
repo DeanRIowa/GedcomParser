@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -79,8 +80,8 @@ namespace GedcomSampleApp
                         foreach (DatePlace perMarriage in item.Marriage)
                         {
                             lstReultsAddLine("Marriage", 2);
-                            lstReultsAddLine("Date: " + perMarriage.Date.ToString(), 2);
-                            lstReultsAddLine("Place: " + perMarriage.Place.ToString(), 2);
+                            lstReultsAddLine("Date: " + perMarriage.Date.ToString() ?? "", 2);
+                            lstReultsAddLine("Place: " + perMarriage.Place ?? "", 2);
                         }
                         // Spouse 1
                         var fromPerson = myLines.Persons.FirstOrDefault(e => e.Id == item.From.Id);
@@ -165,10 +166,6 @@ namespace GedcomSampleApp
         private void LoadGedComFile()
         {
             // Parse Gedcom file
-            //string gedFile = @"C:\Users\deanr\source\repos\GedcomParser-master\src\GedcomParser.Test\Resources\GedcomStandard\555SAMPLE.GED";
-            // string gedFile = @"C:\Family Research\DNA\TestTree.ged";
-            // string gedFile = @"C:\Family Research\DNA\TestTree2.ged";
-
             ShowProcessingStart();
 
             // Load Gedcom
@@ -451,7 +448,47 @@ namespace GedcomSampleApp
             }
         }
 
+        private void btnPersonPlaces_Click(object sender, EventArgs e)
+        {
+            if (gedcomLoaded == false)
+            {
+                MessageBox.Show("Gedcom File Not loaded!");
+            }
+            else
+            {
+                ShowProcessingStart();
 
-        // ************* End
+                // Reset Listbox
+                lstResults.Items.Clear();
+                lstResults.Items.Add("People Count: " + myLines.Persons.Count.ToString());
+
+                // Cycle through Person collection
+                foreach (GedcomParser.Entities.Person item in myLines.Persons)
+                {
+                    // Print Person Data
+                    lstReultsAddPersonRec("Person", 0, item);
+
+                        // Get Dates/Places Collections
+                        lstReultsAddLine("Places Collection", 2);
+                        List<DatePlace> places = new List<DatePlace>();
+                        places = PersonExtender.getPersonPlacesByID(myLines, item.Id);
+                        // Cycle throuh Places Collection
+                        foreach (DatePlace tmpPlace in places)
+                        {
+                            lstReultsAddLine("-------------------------------", 3);
+                            lstReultsAddLine("Description: " + tmpPlace.Description, 3);
+                            lstReultsAddLine("Date: " + tmpPlace.Date, 3);
+                            lstReultsAddLine("Place: " + tmpPlace.Place, 3);
+                        }
+
+
+                }
+                ShowProcessingEnd();
+            }
+        }
+
+
+
+// *************** End
     }
 }
