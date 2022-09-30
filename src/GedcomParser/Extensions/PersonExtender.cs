@@ -13,7 +13,8 @@ namespace GedcomParser.Extensions
         public static Person getPersonByID(Result gedData, string PersonId)
         {
 
-            return gedData.Persons.FirstOrDefault(e => e.Id == PersonId);
+            Person tmpPerson = gedData.Persons.FirstOrDefault(e => e.Id == PersonId);
+            return tmpPerson;
         }
 
         // Combines all Person properties using the dataplace pbject into one list

@@ -338,6 +338,7 @@ namespace GedcomSampleApp
             string tabs = new string('\t', tabsCount);
             string tabs2 = new string('\t', tabsCount+1);
             lstResults.Items.Add(tabs + perType);
+            lstResults.Items.Add(tabs2 + "OD: " + perItem.Id);
             lstResults.Items.Add(tabs2 + "LastName: " + perItem.LastName);
             lstResults.Items.Add(tabs2 + "FirstName: " + perItem.FirstName);
             lstResults.Items.Add(tabs2 + "Gender: " + perItem.Gender);
@@ -358,7 +359,7 @@ namespace GedcomSampleApp
                 lblGedComLoaded.ForeColor = Color.White;
                 lblGedComLoaded.Text = "GEDCom File not Loaded";
                 gedcomLoaded = false;
-                ;
+           
             }
         }
 
@@ -487,8 +488,24 @@ namespace GedcomSampleApp
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Person tmpPerson = PersonExtender.getPersonByID(myLines, "@I362385780779@");
+            if (tmpPerson != null)
+            {
+                lstResults.Items.Clear();
+                lstResults.Items.Add(tmpPerson.LastName + "," + tmpPerson.FirstName);
+            }
+            //Person tmp2 = myLines.Persons.FirstOrDefault(e => e.Id == "@I362385780779@");
+            //if (tmpPerson != null)
+            //{
+            //    lstResults.Items.Clear();
+            //    lstResults.Items.Add(tmpPerson.LastName + "," + tmpPerson.FirstName);
+            //}
+        }
 
 
-// *************** End
+
+        // *************** End
     }
 }
