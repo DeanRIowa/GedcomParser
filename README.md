@@ -17,8 +17,6 @@ The intention of this project is just to parse the GEDCOM file content into simp
 ##### DeanRIowa/GedcomParser Fork Purpose
 This fork will provide samples usage and the enhancements will be for loading multiple DNA matched Gedcom data trees into a custom GPS mapping program for identifying family matches.
 
-#### .Net Core and .Net Framework Class Library Interoperability
-The GedcomParser was written using the NetCore 3.1, however I wanted to use this class library in a Winform application that was written in Net Framework 4.7.2, my solution has been to manually change in the GedcomParser.csproj file(xml) this line from <TargetFramework>netcoreapp3.1</TargetFramework> to  <TargetFramework>netstandard2.0</TargetFramework> which allowed the compiled the dll to be usable by both NetCore 3.1 and Net Framework 4.7.2.
 
 ## Disclaimer
 Most GEDCOM software only uses a limited amount of the tags. It would take a lot of time to cover all tags in their variations and it would be of little use. The approach taken here is to cover all normally used tags. Some tags are deliberately skipped as they are irrelevant for my current need. They will instead be returned as warnings. Unusual tags that are not handled will be returned as errors. This approach will make it easy to gradually extend the logic and handle missing tags when they are actually requested. After parsing a file it is a good practice to review the Error and Warning collections to ensure important tags are not missing.
@@ -35,3 +33,6 @@ The main chunks represent either individuals or families. All other chunks are s
 Person maps directly to a regular person with all needed attributes.
 Family is a hub to describe the internal relations of a nuclear family.
 The parser produces two resulting collections named Persons and Relations. They can then be used for further high level processing. When targeting graph databases they are ideal as they directly map to nodes and relations without much additional effort.
+
+## .Net Core and .Net Framework Class Library Interoperability
+The GedcomParser was written using the NetCore 3.1, however I wanted to use this class library in a Winform application that was written in Net Framework 4.7.2, my solution has been to manually change in the GedcomParser.csproj file(xml) this line from <<TargetFramework>>netcoreapp3.1<</TargetFramework>> to  <<TargetFramework>>netstandard2.0<</TargetFramework>> which allowed the compiled the dll to be usable by both NetCore 3.1 and Net Framework 4.7.2.
